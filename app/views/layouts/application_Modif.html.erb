@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Red de amigos por chiapas</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <script src="jquery.js" charset="utf-8"></script>
+</head>
+<body>
+  <header class="main-header">
+    <div class="ed-container">
+      <%= link_to root_path do %>
+      <%= image_tag "LogoRedAmigos_ico.png", width: 120, height: 60, class: "logo" %>
+      <% end %>
+    </div>
+    <div class="ed-item s-30 l-70 cross-center main-end">
+      <div class="nav-toggle" id="nav-toggle"></div>
+        <nav class="main-nav" id="menu">
+          <ul class="main-menu" id="menu">
+            <% if user_signed_in? %>
+              <li class="main-menu__item"><%= link_to "Salir", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li class="main-menu__item"><%= link_to "Afiliarse", new_user_registration_path %></li>
+              <li class="main-menu__item"><%= link_to "Ingresar", new_user_session_path %></li>
+            <% end %>
+          </ul>
+          <ul class="main-menu-right" id="menu">
+            <% if user_signed_in? %>
+              <li class="main-menu__item"><%=  %></li>
+              <li class="main-menu__item"><%= link_to "Agregar Sitio", new_sitio_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <div class="ed-container">
+    <%= yield %>
+  </div>
+
+  <script src="sticky.js"></script>
+  <script src="ed-grid.js"></script>
+  <script>
+    edgrid.menu('nav', 'menu')
+  </script>
+</body>
+</html>

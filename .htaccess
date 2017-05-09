@@ -1,0 +1,11 @@
+# Dentro del .htaccess
+
+Options +ExecCGI
+ScriptInterpreterSource registry
+
+# El archivo (.reg)
+
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\.rhtml\Shell\ExecCGI\Command]
+@="C:\\wamp64\\bin\\apache\\apache2.4.23\\ruby\\bin\\eruby.exe"

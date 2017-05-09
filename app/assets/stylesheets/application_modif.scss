@@ -1,0 +1,333 @@
+  $cssCore: false;
+  $cssHelpers: true;
+  $devMode: false;
+  @import "/ed-grid";
+ @import url(http://fonts.googleapis.com/css?family=Lora|Ubuntu:300,400,500);
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+ /* Variables, mixins, etc.. */
+ @mixin background-tile {
+ 	box-sizing: border-box;
+ 	background-color: #f4f4f4;
+ 	border-radius: 5px;
+ 	box-shadow: 3px 3px 5px 6px #ccc;
+ 	padding: 1.5em 1.25em;
+ }
+
+ //colors
+ $black: #222;
+ $white: #eee;
+ $bp-menu: l;
+ $bd-menu: 1px solid rgba(#fff,.15);
+ $grey: #ccc;
+
+ //Header
+ .main-header{
+   background: $black;
+ }
+
+ .logo{
+   display: block;
+   height: 35px;
+   margin: 7px 0;
+ }
+ //menu
+ .main-menu{
+   @include edMenu($bp-menu);
+
+   &__item{
+     @include to($bp-menu){
+       border-bottom: $bd-menu;
+     }
+   }
+
+   &__link {
+     color: $white;
+     font-size: .95em;
+     display: block;
+
+     @include from($bp-menu){
+       height: 49px;
+       line-height: 49px;
+       &:hover{
+         box-shadow: 0 -3px tomato inset;
+       }
+     }
+   }
+ }
+
+ .main-nav {
+   @include edNav(right, $bp-menu)
+
+   @include to($bp-menu) {
+     margin-top: 49px;
+     align-self: stretch;
+     background: lighten($black,5);
+   }
+ }
+
+ .nav-toggle {
+   @include navToggle(15px,$white);
+   @include hideFrom($bp-menu);
+ }
+
+
+ .menu-fixed {
+ 	position:fixed;
+ 	z-index:1000;
+ 	top:0;
+ //	max-width:1000px;
+   left: 0;
+ 	width:100%;
+// 	box-shadow:0px 4px 3px rgba(0,0,0,.5);
+ }
+
+ /* General styles */
+ body {
+ 	background-color: #f5f5f5;
+ 	font-family: 'Lora', serif;
+  margin-top: 90px;
+ }
+
+ h1, h2, h3, h4, h5, h6 {
+ 	font-family: 'Ubuntu', sans-serif;
+ 	font-weight: 300;
+ }
+
+ p.alert, p.notice {
+ 	margin: 0;
+ }
+
+ /* Navbar/navigation styles */
+ .navbar {
+ 	font-family: 'Ubuntu', sans-serif;
+ 	text-transform: uppercase;
+ }
+ .navbar-default {
+// 	background-color: #6a6a6a;
+  background-color: rgba(43, 44, 46, 0.7) !important;
+  opacity: 1;
+ 	padding-bottom: 5px;
+ 	padding-top: 5px;
+  box-shadow: 3px 3px 5px 6px #ccc;
+
+ 	.navbar-nav > li > a {
+ 		color: #222;
+ 		&:hover {
+ 			color: darken(#f1c40f, 5%);
+ 			transition: 0.5s;
+ 		}
+ 	}
+
+ 	.navbar-header {
+ 		.navbar-brand {
+ 			color: #222;
+ 			letter-spacing: 1.4px;
+ 		}
+ 	}
+
+ 	.dropdown-menu > li > a:hover {
+ 		background-color: darken(#f1c40f, 5%);
+ 		color: #fff;
+ 	}
+
+ 	.navbar-nav > .open > a, .navbar-nav > .open > a:hover, .navbar-nav > .open > a:focus {
+ 		background-color: darken(#f1c40f, 5%);
+ 		color: #fff;
+ 	}
+ }
+
+ .dropdown-menu > .active > a {
+ 	background-color: #f1c40f;
+ 	color: #fff;
+ }
+
+ /* Button/link styles */
+ .btn-custom {
+ 	color: darken(#f1c40f, 5%);
+ 	background-color: #fff;
+ 	border: 1px solid darken(#f1c40f, 5%);
+ 	padding: 8px 20px;
+ 	border-radius: 5px;
+ 	font-family: 'Ubuntu', sans-serif;
+ 	&:hover {
+ 		text-decoration: none;
+ 		background-color: darken(#f1c40f, 5%);
+ 		color: #fff;
+ 		transition: 0.5s;
+ 	}
+ }
+
+ .btn-custom2 {
+ 	color: #333;
+ 	background-color: #fff;
+ 	border: 1px solid #222;
+ 	padding: 8px 20px;
+ 	border-radius: 5px;
+ 	font-family: 'Ubuntu', sans-serif;
+ 	&:hover {
+ 		text-decoration: none;
+ 		background-color: #333;
+ 		color: #fff;
+ 		transition: 0.5s;
+ 	}
+ }
+
+ .links {
+ 	.btn-custom {
+ 		padding: 3px 10px;
+ 		font-weight: 300;
+ 	}
+ }
+
+ .sitio-links {
+ 	.btn-custom {
+ 		padding: 3px 10px;
+ 		font-weight: 300;
+ 		margin-top: 40px;
+ 	}
+ }
+
+ /* sitio styles */
+ .sitio {
+  height: 95%;
+  width: 95%;
+  margin-bottom: 3em;
+// 	height: 250px;
+// 	width: 300px;
+// 	margin-bottom: 40px;
+ 	@include background-tile;
+ }
+
+ .sitio-show {
+  height: 100%;
+// 	height: 375px;
+  width: 100%;
+// 	width: 450px;
+ 	@include background-tile;
+ }
+
+ .sitio-info {
+ 	@include background-tile;
+
+ 	.sitio-title {
+ 		margin-top: 0;
+ 		font-size: 2em;
+ 	}
+
+ 	.avg-rating {
+ 		font-size: 1.5em;
+ 		margin-top: 15px;
+ 		margin-bottom: 5px;
+ 	}
+
+ 	.number-of-reviews {
+ 		font-size: 0.85em;
+ 		font-style: italic;
+ 	}
+
+ 	.sitio-author {
+ 		font-size: 1.5em;
+ 		margin-top: 10px;
+ 		margin-bottom: 10px;
+ 		span {
+ 			font-size: 0.80em;
+ 		}
+ 	}
+
+ 	.sitio-desc {
+ 		font-size: 1.05em;
+ 		line-height: 1.5;
+ 		margin-bottom: 15px;
+ 		margin-top: 15px;
+ 	}
+ }
+
+ /* current-category styles */
+ .current-category {
+ 	margin-bottom: 40px;
+ }
+
+ /* Reviews styles */
+ .reviews {
+ 	@include background-tile;
+ 	margin-top: 40px;
+ 	h1 {
+ 		margin-top: 0;
+ 		margin-bottom: 15px;
+ 		font-size: 2em;
+ 	}
+
+ 	.review {
+ 		border-bottom: 1px solid gainsboro;
+ 		margin-bottom: 15px;
+ 		padding-bottom: 10px;
+
+ 		.review-comment {
+ 			font-size: 1.05em;
+ 			line-height: 1.5;
+ 		}
+ 	}
+
+ 	.new-review {
+ 		padding-top: 8px;
+ 	}
+ }
+
+ /* New sitio Form styles */
+ .new-sitio-form {
+ 	@include background-tile;
+ 	h1 {
+ 		margin-top: 0;
+ 	}
+ 	#category_id {
+ 		margin-bottom: 10px;
+ 	}
+ 	#sitio_sitio_img {
+ 		margin-bottom: 10px;
+ 	}
+ }
+
+ /* Edit sitio Form styles */
+ .edit-sitio-form {
+ 	@include background-tile;
+ 	h1 {
+ 		margin-top: 0;
+ 	}
+ 	#sitio_category_id {
+ 		margin-bottom: 10px;
+ 	}
+ 	#sitio_sitio_img {
+ 		margin-bottom: 10px;
+ 	}
+ }
+
+ /* New/Edit review form styles */
+ .new-review-form, .edit-review-form {
+ 	@include background-tile;
+ 	h1 {
+ 		margin-top: 0;
+ 	}
+ 	#rating-form {
+ 		margin-bottom: 15px;
+ 		label {
+ 			display: block;
+ 		}
+ 	}
+ }
+
+ /* Signup/Login form styles */
+ .signup-form {
+ 	@include background-tile;
+ 	h2 {
+ 		margin-top: 0;
+ 	}
+ }
+
+ .login-form {
+ 	@include background-tile;
+ 	h2 {
+ 		margin-top: 0;
+ 	}
+ }

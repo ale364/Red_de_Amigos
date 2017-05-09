@@ -1,14 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Reddamigoschiapas</title>
+  <title>Red de amigos por chiapas</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,
+  maximum-scale=1.0, minimum-scale=1.0">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script src="jquery.js"></script>
+  <script src="script_menu.js"></script>
 </head>
 <body>
+  <header>
+    <nav>
+      <ul>
+        <li><%= link_to "Inicio", root_path%></li>
+        <li><%= link_to "Contáctanos", new_user_registration_path %></li>
+      </ul>
 
-<%= yield %>
+      <%= link_to image_tag("LogoRedAmigoscv.png", id: "logo"), root_path %>
+
+      <ul>
+        <% if user_signed_in? %>
+          <li><%= link_to "Salir", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Afiliarse", new_user_registration_path %></li>
+          <li><%= link_to "Ingresar", new_user_session_path %></li>
+        <% end %>
+      </ul>
+      <ul >
+        <% if user_signed_in? %>
+        <li><%= link_to "Agregar Sitio", new_sitio_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="banner"></section>
+  <section id="cuerpo">
+  </section>
+    <article class="">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </article>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <footer class="main-footer">
+      <div class="creditos">
+        <p >Red de Amigos por Chiapas &copy; 2017 | diseño: </p>
+        <div id="telefono">
+          <%= link_to image_tag("LogoACL_tv.png", class: "logoacl"), "https://www.facebook.com/Alexis.Crouz" %><p> @acruzlara </p>
+        </div>
+      </div>
+      <div class="medio">
+        <p>Dirección:</p>
+        <p>Tuxtla Gutiérrez, Chiapas, México</p>
+        <p>5a. Oriente Norte, Edificio A, Planta Baja 2,</p>
+        <p>Unidad Quetzalcoatl</p>
+      </div>
+      <div class="sociales">
+        <%= link_to image_tag("facebook.png", class: "logos"), "https://www.facebook.com/Red.de.Amigos.por.Chiapas" %>
+        <%= link_to image_tag("twitter2.png", class: "logos"), "https://twitter.com/reddeamigosxchs" %>
+        <%= link_to image_tag("youtube.png", class: "logos"), "#" %>
+        <%= link_to image_tag("google2.png", class: "logos"), "#" %>
+        <%= link_to image_tag("linkedin.png", class: "logos"), "http://planeacion.sep.gob.mx/SIC/" %>
+        <div id="telefono">
+          <%= link_to image_tag("whatsappv1.png", class: "logos"), "https://web.whatsapp.com/" %><p>961.579.10.83</p>
+        </div>
+      </div>
+
+    </footer>
+
+  <!--
+    <div class="slider">
+      <ul>
+        <li><%= image_tag "img/Logo.png" %></li>
+        <li><%= image_tag "img/foto1.jpg" %></li>
+        <li><%= image_tag "img/foto2.jpg" %></li>
+        <li><%= image_tag "img/foto3.jpg" %></li>
+        <li><%= image_tag "img/foto4.jpg" %></li>
+        <li><%= image_tag "img/foto5.jpg" %></li>
+      </ul>
+    </div>
+  -->
+
+  <script src="jquery.js"></script>
+  <script src="script_menu.js"></script>
 
 </body>
 </html>

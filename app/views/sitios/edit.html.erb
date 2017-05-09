@@ -1,0 +1,13 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="edit-sitio-form">
+    <h1>Editar Sitios</h1>
+
+    <%= simple_form_for @sitio, html: { :multipart => true } do |f| %>
+      <%= f.file_field :sitio_img %>
+      <%= f.input :title, label: "Nombre del Sitio" %>
+      <%= f.input :description %>
+      <%= f.input :author %>
+      <%= f.button :submit, class: "btn-custom2" %>
+    <% end %>
+  </div>
+</div>
